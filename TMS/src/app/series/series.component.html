@@ -1,0 +1,15 @@
+<div class="tarik" *ngFor="let item of series">
+    <div class="card">
+        <img class="movieImg" src="{{item.landscape}}" alt="">
+        <div class="omot"></div>
+        <div class="hero-description">
+            <p>{{item.name}}</p>
+        </div>
+        <div  class="movieDate">
+            <p>{{item.first_air_date}}</p>
+        </div>
+        <div class="readMore">
+            <a [routerLink]="['/info', item.id, this.type]">Learn More</a>
+        </div>
+    </div>
+</div>

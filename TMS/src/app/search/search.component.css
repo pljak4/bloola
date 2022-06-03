@@ -1,0 +1,28 @@
+.toolbar{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,113,1) 37%, rgba(92,57,147,1) 63%, rgba(0,212,255,1) 100%);
+    height: 5%;
+  }
+  
+  .mat-ink-bar {
+    background: rgb(206, 6, 156);
+  }
+  
+  .mat-tab-labels{
+    position: fixed;
+  }
+  
+  .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 12%;
+      text-align: center;
+      color: rgb(212, 211, 211);
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(80, 7, 75) 37%, rgb(16, 81, 94) 100%);
+      clear:both;  
+  }
+  
+  .tabs{
+    height: 83%;
+  }
