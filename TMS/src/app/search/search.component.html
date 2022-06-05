@@ -1,6 +1,12 @@
 <div class="toolbar">
+  <form action="" class="search-bar">
+    <input type="search" name="search" [(ngModel)]="this.searchWord"
+    (input)="this.search($event)" pattern=".*\S.*" required>
+    <button class="search-btn" type="submit">
+      <span>Search</span>
+    </button>
+  </form>
 </div>
-
 <mat-tab-group class="tabs">
   
   <mat-tab label="Movies">

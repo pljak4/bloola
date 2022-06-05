@@ -50,8 +50,9 @@ export class MovieSeriesService {
         return this.httpClient.get(ApiStuff.BASE_URL+'/search/movie?'+ApiStuff.API_KEY+'&language=en-US&page=1&include_adult=false&query='+phrase)
         .pipe(map((x: any) => {
             for(let res of x.results)
-            this.mapData(x);
-            //vidjeti jel treba return
+                res = this.mapData(res);
+            
+            return x;
           }));
     }
     

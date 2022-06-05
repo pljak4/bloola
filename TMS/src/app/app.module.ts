@@ -14,6 +14,8 @@ import { MoviesComponent } from './movies/movies.component';
 import { SearchComponent } from './search/search.component';
 import { InformationComponent } from './information/information.component';
 import { SeriesComponent } from './series/series.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { SeriesComponent } from './series/series.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTabsModule,
+    FormsModule,
+    CommonModule,
     MatIconModule,
     HttpClientModule
   ],
