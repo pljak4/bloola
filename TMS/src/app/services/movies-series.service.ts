@@ -13,11 +13,9 @@ export class MovieSeriesService {
     getTopMovies(){
         return this.httpClient.get(ApiStuff.BASE_URL+'/movie/top_rated?'+ApiStuff.API_KEY)
         .pipe(map((x: any) => {
-            for (let res of x.results) {
+            for (let res of x.results) 
                 res = this.mapData(res);
-            }
-              
-            
+
             return x;
           }));
     }
@@ -48,6 +46,16 @@ export class MovieSeriesService {
 
     searchMovies(phrase: string){
         return this.httpClient.get(ApiStuff.BASE_URL+'/search/movie?'+ApiStuff.API_KEY+'&language=en-US&page=1&include_adult=false&query='+phrase)
+        .pipe(map((x: any) => {
+            for(let res of x.results)
+                res = this.mapData(res);
+            
+            return x;
+          }));
+    }
+
+    searchSeries(phrase: string){
+        return this.httpClient.get(ApiStuff.BASE_URL+'/search/tv?'+ApiStuff.API_KEY+'&language=en-US&page=1&include_adult=false&query='+phrase)
         .pipe(map((x: any) => {
             for(let res of x.results)
                 res = this.mapData(res);

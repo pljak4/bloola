@@ -9,13 +9,16 @@ import { MySocialsComponent } from './my-socials/my-socials.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MovieSeriesService } from './services/movies-series.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MoviesComponent } from './movies/movies.component';
 import { SearchComponent } from './search/search.component';
 import { InformationComponent } from './information/information.component';
 import { SeriesComponent } from './series/series.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from './loader/loader.component';
+import { InterceptorService } from './services/interceptor.service';
+import { LoaderService } from './services/loading.service';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { CommonModule } from '@angular/common';
     MoviesComponent,
     SearchComponent,
     InformationComponent,
-    SeriesComponent
+    SeriesComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,7 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     HttpClientModule
   ],
-  providers: [MovieSeriesService],
+  providers: [MovieSeriesService, LoaderService, {provide:HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

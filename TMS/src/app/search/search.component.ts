@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from '../services/loading.service';
 import { MovieSeriesService } from '../services/movies-series.service';
-import { Type } from '../shared/helper'
 
 @Component({
   selector: 'search',
@@ -9,41 +9,81 @@ import { Type } from '../shared/helper'
 })
 export class SearchComponent implements OnInit {
   
+  public imgUrl: any;
+  public type: any;
+  public movie: any;
+  public series: any;
   public searchWord: any;
-  searchType: string = Type.MOVIE;
 
-  constructor(public moviesSeriesService: MovieSeriesService) { }
+  constructor(public moviesSeriesService: MovieSeriesService, public loaderSevice: LoaderService) { }
 
   ngOnInit(): void {
+    
+    this.getMovieBody();
   }
 
   search(e: any) {
-    debugger;
-    this.searchWord.next(e.data);
-    //this.searchWord.next(e);
+    this.searchIf();
   }
 
-  fetchSearchResults() {
-    //this.isFetching = true;
-    //this.getSearchResults().subscribe((response: any) => {
-    //  this.searchResults = response.results;
-    //  this.isFetching = false;
-    //});
+  searchIf(){
+    if(this.searchWord?.length>3){
+      this.searchBrain('M');
+      this.searchBrain('S');
+    }else if(this.searchWord?.length<1){
+      this.getMovieBody();
+      this.getSeriesBody();
+    }
   }
 
-  switchType() {
-    switch (this.searchType) {
-      case Type.MOVIE: {
-        return this.moviesSeriesService.searchMovies(this.searchWord);
+  getMovieBody(){
+    this.moviesSeriesService.getTopMovies()
+    .subscribe((res: any) => {
+      this.movie = res.results;
+    })
+  }
+
+  getSeriesBody(){
+    this.moviesSeriesService.getTopSeries()
+    .subscribe((res: any) => {
+      this.series = res.results;
+    })
+  }
+
+  onTabClick(e: any){
+    switch (e.index) {
+      case 0: {
+        let m='M';
+        this.getMovieBody();
+        this.searchBrain(m);
+        break; 
       }
-      case Type.SERIES: {
-        return this.moviesSeriesService.searchMovies(this.searchWord);
+      case 1: {
+        let s='S';
+        this.getSeriesBody();
+        this.searchBrain(s);
+        break;
       }
       default:{
-        return null;
-      }
-        
+        break;
+      }   
     }
+  }
+
+  searchBrain(type: any){
+    debugger;
+    if(type=='M' && this.searchWord.length!=0){
+      this.moviesSeriesService.searchMovies(this.searchWord)
+        .subscribe((res: any) => {
+          this.movie=res.results;
+        });
+    }else if(type=='S' && this.searchWord.length!=0){
+      this.moviesSeriesService.searchSeries(this.searchWord)
+        .subscribe((res: any) => {
+          this.series=res.results;
+        });
+    }
+    
   }
 
 }

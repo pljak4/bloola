@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { InformationComponent } from './information/information.component';
 import { MoviesComponent } from './movies/movies.component';
 import { SearchComponent } from './search/search.component';
-import { SeriesComponent } from './series/series.component';
 
 const routes: Routes = [
   { path: '', component: SearchComponent },

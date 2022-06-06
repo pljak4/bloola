@@ -1,23 +1,59 @@
 <div class="toolbar">
   <form action="" class="search-bar">
-    <input type="search" name="search" [(ngModel)]="this.searchWord"
-    (input)="this.search($event)" pattern=".*\S.*" required>
+    <input type="search" name="search" [(ngModel)]="searchWord"
+    (input)="search($event)" pattern=".*\S.*" required>
     <button class="search-btn" type="submit">
-      <span>Search</span>
     </button>
   </form>
 </div>
-<mat-tab-group class="tabs">
-  
+
+<div class="tLoader" *ngIf="loaderSevice.isLoading | async">
+  <loader style="position:absolute; top:20%; left:47%;"></loader>
+</div>
+
+<mat-tab-group class="tabs" (selectedTabChange)="onTabClick($event)">
+
   <mat-tab label="Movies">
     <div class="moviesTab">
-      <movies></movies>
+
+      <div class="tarik" *ngFor="let item of movie">
+        <div class="card">
+            <img class="movieImg" src="{{item.landscape}}" alt="">
+            <div class="omot"></div>
+            <div class="hero-description">
+                <p>{{item.title}}</p>
+            </div>
+            <div  class="movieDate">
+                <p>{{item.release_date}}</p>
+            </div>
+            <div class="readMore">
+                <a [routerLink]="['/info', item.id, 'M']">Learn More</a>
+            </div>
+        </div>
+      </div>
+      
     </div>
   </mat-tab>
 
   <mat-tab label="Series">
     <div class="seriesTab">
-      <series></series>
+
+      <div class="tarik" *ngFor="let item of series">
+        <div class="card">
+            <img class="movieImg" src="{{item.landscape}}" alt="">
+            <div class="omot"></div>
+            <div class="hero-description">
+                <p>{{item.name}}</p>
+            </div>
+            <div  class="movieDate">
+                <p>{{item.first_air_date}}</p>
+            </div>
+            <div class="readMore">
+                <a [routerLink]="['/info', item.id, 'S']">Learn More</a>
+            </div>
+        </div>
+      </div>
+
     </div>
   </mat-tab>
   
