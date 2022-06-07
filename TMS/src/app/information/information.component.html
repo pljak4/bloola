@@ -1,22 +1,20 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<section class="banner">
-	<img src="{{movieSeries?.landscape}}" class="banner">
+<section class="banner" *ngIf="movieSeries$ | async as movieSeries">
+	<img src="{{ movieSeries.landscape }}" class="banner" />
 	<div class="container">
-		<div class="content-container">
-			<span class="rating">{{movieSeries?.vote_average}}</span>
-			<h1 class="title">{{movieSeries?.title}}</h1>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star checked"></span>
-			<span class="fa fa-star"></span>
-			<span class="fa fa-star"></span>
-			<a class="an">Org:{{movieSeries?.original_title}}</a>
-			<a class="an">Date:{{movieSeries?.release_date}}</a>
-			<a class="an">Vote count:{{movieSeries?.vote_count}}</a>
-			<p class="des">{{movieSeries?.overview}}</p>
-			<button class="go-back" (click)="goBackNow()">Go back</button>
-		</div>
-
+	  <div class="content-container">
+		<span class="rating">{{ movieSeries.vote_average }}</span>
+		<h1 class="title">{{ movieSeries.title }}</h1>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star checked"></span>
+		<span class="fa fa-star"></span>
+		<span class="fa fa-star"></span>
+		<a class="an">Org:{{ movieSeries.original_title }}</a>
+		<a class="an">Date:{{ movieSeries.release_date }}</a>
+		<a class="an">Vote count:{{ movieSeries.vote_count }}</a>
+		<p class="des">{{ movieSeries.overview }}</p>
+		<button class="go-back" (click)="goBackNow()">Go back</button>
+	  </div>
 	</div>
-	
 </section>
+  

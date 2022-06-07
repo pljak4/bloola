@@ -10,10 +10,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MovieSeriesService } from './services/movies-series.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MoviesComponent } from './movies/movies.component';
 import { SearchComponent } from './search/search.component';
 import { InformationComponent } from './information/information.component';
-import { SeriesComponent } from './series/series.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './loader/loader.component';
@@ -25,10 +23,8 @@ import { LoaderService } from './services/loading.service';
   declarations: [
     AppComponent,
     MySocialsComponent,
-    MoviesComponent,
     SearchComponent,
     InformationComponent,
-    SeriesComponent,
     LoaderComponent
   ],
   imports: [
@@ -41,7 +37,10 @@ import { LoaderService } from './services/loading.service';
     MatIconModule,
     HttpClientModule
   ],
-  providers: [MovieSeriesService, LoaderService, {provide:HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
+  providers: [
+    MovieSeriesService, 
+    LoaderService, 
+    {provide:HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

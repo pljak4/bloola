@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MovieSeriesService } from './services/movies-series.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,7 @@ import { MovieSeriesService } from './services/movies-series.service';
 export class AppComponent {
   title = 'TMS';
 
-  constructor(private moviesService: MovieSeriesService){
-    
-  }
+  constructor(){}
 
-  ngOnInit(){
-  }
+  ngOnInit(){}
 }
