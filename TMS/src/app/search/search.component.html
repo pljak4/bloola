@@ -1,13 +1,6 @@
 <div class="toolbar">
   <form action="" class="search-bar">
-    <input
-      type="search"
-      name="search"
-      [(ngModel)]="searchWord"
-      (input)="search()"
-      pattern=".*\S.*"
-      required
-    />
+    <input type="search" name="search" [(ngModel)]="searchWord" (input)="search()" pattern=".*\S.*" required/>
     <button class="search-btn" type="submit"></button>
   </form>
 </div>
