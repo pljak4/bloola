@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoaderService } from '../services/loading.service';
 import { MovieSeriesService } from '../services/movies-series.service';
@@ -8,7 +8,7 @@ import { MovieSeriesService } from '../services/movies-series.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
   imgUrl: any;
   type: any;
   movies$!: Observable<any>;
@@ -16,12 +16,16 @@ export class SearchComponent implements OnInit {
   searchWord: string = '';
 
   constructor(
-    public moviesSeriesService: MovieSeriesService,
-    public loaderSevice: LoaderService
-  ) {}
+    public moviesSeriesService: MovieSeriesService, public loaderSevice: LoaderService, private changeDetectorRef: ChangeDetectorRef) {
+      
+    }
 
   ngOnInit(): void {
     this.getMovieBody();
+  }
+
+  ngAfterViewInit(): void {
+    this.changeDetectorRef.detectChanges();
   }
 
   search() {
@@ -36,6 +40,7 @@ export class SearchComponent implements OnInit {
       this.getMovieBody();
       this.getSeriesBody();
     }
+    this.changeDetectorRef.detectChanges();
   }
 
   getMovieBody() {
@@ -62,6 +67,7 @@ export class SearchComponent implements OnInit {
         break;
       }
     }
+    this.changeDetectorRef.detectChanges();
   }
 
   searchBrain(type: any) {
